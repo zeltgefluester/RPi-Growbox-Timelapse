@@ -112,6 +112,7 @@ def capture_image(count):
     ]
     
     result = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
+    
     if result.returncode != 0:
         logging.error(f"Kamera-Fehler (Bild {count}): {result.stderr}")
         return False
@@ -177,7 +178,7 @@ if __name__ == "__main__":
             save_counter(current_count)
             
             if current_count >= WINDOW_SIZE and current_count % MAX_IMAGES == 0:
-                create_video(current_count)
+                create_video()
                 
     except Exception as e:
         logging.error(f"Unerwarteter Script-Fehler: {e}")
